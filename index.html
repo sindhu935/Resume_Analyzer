@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Analyzer | Upload & Match Your Skills</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="main-card">
+      <header>
+        <h1>📄 Resume Analyzer <span>upload & match</span></h1>
+        <p class="subhead">Upload your resume (PDF/DOCX) — AI compares it against <strong>your skill stack</strong></p>
+      </header>
+
+      <!-- Your Skills Section (Editable) -->
+      <div class="skills-panel">
+        <div class="panel-header">
+          <h2>⭐ Required Professional Skills</h2>
+          <button id="editSkillsBtn" class="btn-outline">✏️ Edit Skills</button>
+        </div>
+        <div id="skillsContainer" class="skills-cloud">
+          <!-- Skills loaded via JS -->
+        </div>
+        <p class="hint">👇 These are YOUR skills. The analyzer scans resumes for matches.</p>
+      </div>
+
+      <!-- File Upload Area -->
+      <div class="upload-area">
+        <label for="resumeFile">📁 Upload Resume (PDF or DOCX)</label>
+        <div class="file-dropzone" id="dropzone">
+          <input type="file" id="resumeFile" accept=".pdf,.docx" style="display: none;">
+          <div class="dropzone-content">
+            <span class="upload-icon">📂</span>
+            <p>Drag & drop your resume here</p>
+            <small>or click to browse</small>
+          </div>
+        </div>
+        <div id="fileNameDisplay" class="file-info hidden"></div>
+        <div class="action-buttons">
+          <button id="analyzeBtn" class="btn-primary" disabled>🔍 Analyze Resume</button>
+          <button id="clearBtn" class="btn-secondary">🗑 Clear</button>
+        </div>
+      </div>
+
+      <!-- Loading Indicator -->
+      <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Analyzing your resume...</p>
+      </div>
+
+      <!-- Results Dashboard -->
+      <div id="resultsSection" class="results-section hidden">
+        <div class="score-header">
+          <div class="score-circle">
+            <span id="matchPercent">0</span><small>%</small>
+          </div>
+          <div class="score-summary">
+            <h3>Skill Match Score</h3>
+            <p id="matchFeedback">Your resume alignment</p>
+          </div>
+        </div>
+
+        <div class="insight-grid">
+          <div class="insight-card">
+            <h4>✅ Matched Skills</h4>
+            <ul id="matchedList" class="tag-list"></ul>
+          </div>
+          <div class="insight-card warning">
+            <h4>⚠️ Missing Skills</h4>
+            <ul id="missingList" class="tag-list missing"></ul>
+          </div>
+          <div class="insight-card suggestion">
+            <h4>💡 Improvement Tips</h4>
+            <ul id="tipsList"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include PDF parsing library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <!-- Include DOCX parser -->
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.2/mammoth.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
